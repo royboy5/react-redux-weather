@@ -1,19 +1,28 @@
 import _ from 'lodash'
 import React from 'react'
 import { Sparklines, SparklinesLine, SparklinesReferenceLine } from 'react-sparklines'
+import styled from 'styled-components'
+
+const Div = styled.div`
+  > svg {
+    height: 150px;
+  }
+`
 
 function average (data) {
   return _.round(_.sum(data)/data.length)
 }
 
-export default (props) => {
+const Chart = (props) => {
   return (
-    <div>
+    <Div>
       <Sparklines height={120} width={180} data={props.data}>
         <SparklinesLine color={props.color} />
         <SparklinesReferenceLine type="avg" />
       </Sparklines>
-      <div>{average(props.data)}</div>
-    </div>
+      <div>{average(props.data)} {props.units}</div>
+    </Div>
   )
 }
+
+export default Chart
