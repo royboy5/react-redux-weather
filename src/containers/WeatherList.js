@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 
 import Chart from '../components/chart'
+import GoogleMap from '../components/googlemaps'
 
 const TD = styled.td`
   vertical-align: middle!important;
@@ -17,10 +18,11 @@ class WeatherList extends Component {
     const temps = (cityData.list.map(weather => weather.main.temp)).map(temp => temp * 9/5 - 459.67)
     const pressure = cityData.list.map(weather => weather.main.pressure)
     const humidity = cityData.list.map(weather => weather.main.humidity)
+    const { lon, lat } = cityData.city.coord
 
     return (
       <tr key={name}>
-        <TD>{name}</TD>
+        <TD><GoogleMap lon={lon} lat={lat} /></TD>
         <TD><Chart data={temps} color="blue" units="F" /></TD>
         <TD><Chart data={pressure} color="red" units="hPa" /></TD>
         <TD><Chart data={humidity} color="green" units="%" /></TD> 
