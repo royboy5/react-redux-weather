@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 
 import Chart from '../components/chart'
-import GoogleMap from '../components/googlemaps'
+import GoogleMap from '../components/react-googlemaps'
 
 const TD = styled.td`
   vertical-align: middle!important;
@@ -22,7 +22,17 @@ class WeatherList extends Component {
 
     return (
       <tr key={name}>
-        <TD><GoogleMap lon={lon} lat={lat} /></TD>
+        <TD>
+          <GoogleMap
+            isMarkerShown
+            googleMapURL = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDu6DGpVI2hN1pYStvEDikXdfjZEF7YQao&v=3.exp&libraries=geometry,drawing,places"
+            loadingElement = { <div style={{ height: `100%` }} /> }
+            containerElement = { <div style={{ height: `200px` }} /> }
+            mapElement = { <div style={{ height: `100%` }} /> }
+            lat = {lat}
+            lng = {lon}
+          />        
+        </TD>
         <TD><Chart data={temps} color="blue" units="F" /></TD>
         <TD><Chart data={pressure} color="red" units="hPa" /></TD>
         <TD><Chart data={humidity} color="green" units="%" /></TD> 
