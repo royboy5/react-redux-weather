@@ -10,7 +10,7 @@ const TD = styled.td`
   text-align: center!important;
 `
 
-const TH = TD.extend
+const TH = TD.withComponent('th')
 
 class WeatherList extends Component {
   renderWeather(cityData) {
